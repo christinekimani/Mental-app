@@ -24,4 +24,29 @@ document.getElementById('question-form').addEventListener('submit', function (ev
     // Scroll to the bottom
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   });
+  const carousel = document.querySelector('.carousel');
+const slides = document.querySelectorAll('.carousel-slide');
+let currentIndex = 0;
+
+function showNextSlide() {
+  // Increment the current index
+  currentIndex = (currentIndex + 1) % slides.length;
+
+  // Move the carousel to show the next slide
+  const offset = currentIndex * -100; // Shift slides by 100% per slide
+  carousel.style.transform = `translateX(${offset}%)`;
+}
+
+// Auto-play every 3 seconds
+setInterval(showNextSlide, 3000);
+document.getElementById('prev-btn').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  const offset = currentIndex * -100;
+  carousel.style.transform = `translateX(${offset}%)`;
+});
+
+document.getElementById('next-btn').addEventListener('click', () => {
+  showNextSlide();
+});
+
   
