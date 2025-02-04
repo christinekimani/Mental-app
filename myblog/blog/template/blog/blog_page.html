@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calmerry Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">Calmerry</div>
+        <nav>
+            <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Calmerry Blog</h1>
+        <p>All the latest news, updates, and announcements from us</p>
+    </section>
+    
+    <section class="featured-articles">
+        <h2>Featured Articles</h2>
+        <div class="articles">
+            {% for article in articles %}
+            <article>
+                <img src="{% static article.image %}" alt="{{ article.title }}">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.author }} - {{ article.date }}</p>
+            </article>
+            {% endfor %}
+        </div>
+        <button>View more</button>
+    </section>
+    
+    <section class="trial">
+        <h2>Jump in! Your 14-day free trial awaits</h2>
+        <input type="email" placeholder="Type your email">
+        <button>Get Started</button>
+    </section>
+    
+    <div class="articles">
+        {% for article in articles %}
+        <article>
+            <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.author }} - {{ article.date }}</p>
+            <p>{{ article.content|truncatewords:20 }}</p>
+        </article>
+        {% endfor %}
+    </div>
+    
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Calmerry</p>
+            <ul>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
